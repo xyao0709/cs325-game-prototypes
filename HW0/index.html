@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+
+<audio src="./assets/bgvideo.mp3" preload="meta" loop autoplay id="bgmusic"></audio>
+
 <head>
     <meta charset="utf-8">
     <title>Hello! Amaze!</title>
@@ -22,35 +25,37 @@ body
 <body>
 <div id="game"></div>
 <div id="readme">
-<h2>Your game title</h2>
+<h2>Simon</h2>
 
 <ul>
 <li><strong>Originality:</strong>
-What is original about your game?
+Original game is Simon from Phaser 2 examples. Player needs to memorize the order of the flashing squares, and repeat that order.
 </li>
 
 <li><strong>Technical Merit:</strong>
-What is interesting about your game technology?
+For my game, player need to memorize the order, but repeat in the reverse order. Since the order is decided at the beginning of the game, and the count the player needs to memorize will increse by 1 for each turn, it makes the game harder than original game in an adequate level.
 </li>
 
 <li><strong>Prototype Postmortem:</strong>
-What did you learn from this prototype?
-What was the easiest or hardest part of making it?
+From this prototype, I learned basic knowledge of Phaser 2, and the ability to read others code from Phaser 2. The easiest thing is modifying this prototype model in brain, and the hardest part is to understanding the whold code and change the algorithm (which only require a few lines change, but cost too much time to understand and design the algorithm). The other hard thing is adding music into the game (I didn't complete that, and instead of that, I add audio as the background music for this html, where the game will be played).
 </li>
 
 <li><strong>Prototype Assets:</strong>
-Did you make your prototype assets from scratch? Did you borrow them? Cite your sources here.
+The image asset is made with Microsoft Excel by meself, and the audio asset is from Amazon.
 <ul>
-<li>Bouncing Phaser image: <a href="https://phaser.io/download/logo">Phaser logo</a></li>
+<li>Iris (from Sword Art Online: Alicization): <a href="https://www.amazon.com/Iris-Sword-Art-Online-Alicization/dp/B07PYZ3RBF">Link to Amazon</a></li>
 </ul>
 </li>
 
 <li><strong>Prototype Closest Other Game:</strong>
-Which other game most closely resembles your game? If you are borrowing code from a Phaser Example, you must say so here. If you borrow code from elsewhere, you must say so here.
+Simon is the fundamention of my game. 
+<ul>
+<li>Link to original game:<a href="http://phaser.io/examples/v2/games/simon">Simon</a></li>
+</ul>
 </li>
 
 <li><strong>High Concept:</strong>
-A one-sentence summary of your game.
+A click memory game that easy to start, but hard to be expert.
 </li>
 
 <li><strong>Theme:</strong>
@@ -58,36 +63,46 @@ State which of the Storymatic themes you used.
 </li>
 
 <li><strong>Mandated Variety:</strong>
-State which input, randomness, genre, and play style you used in this prototype.
+The sequence of flashing is random, and the game only uses some self-made imagines (and I made the game looks better than original one). The play style is repeating of memorize and reappear a fixed order. 
 </li>
 
 <li><strong>Prototype Goal:</strong>
-What game mechanic is this prototype evaluating?
+Flashing the squares and collect the click and compare with right answer.
 </li>
 
 <li><strong>Player Experience Goals:</strong>
-What experience do you want players to have when playing your game?
+No game experience needed. The only thing the player needed is know how to click an indicated part of the scren.
 </li>
 
 <li><strong>Gameplay:</strong>
-A paragraph describing the actions the player can perform, the system dynamics, and the core mechanic. Include a concise explanation of the prototype’s inputs and their expected effects (how to play). You can also describe game play that is not in the prototype. You may include mock-up images for parts of the game not in the prototype.
+This game works based on watch-memory-repeat cycle. Player needs to watch the order of square flashing, and memorize the order, and then repeat it in a reverse order (original is the orginal order). Players should memorize the order with the help of previous rounds, and sometimes, fortune will help make up the memory.
 </li>
 
 <li><strong>Strategies:</strong>
-What player strategies do you expect will be effective at playing this game?
+Skill of memory is important for that game. The player will need to memorize more and more elements with the game, how to build memory based on established memory and don't mess them up are important.
 </li>
 
 <li><strong>Story/Setting/Premise:</strong>
-A paragraph about the world your game is set in and who the characters are. What makes the game world and its occupants unique and interesting? Do the tokens represent something? If the game has a backstory, mention it here. If the game is abstract, then say so.
-How will the dramatic tension interact with the gameplay tension?
+This game is just watch, memory and repeat game and doesn't have a world. 
 </li>
 
 <li><strong>Target Audience:</strong>
-A single sentence that describes the demographic you're trying to reach.
+Target for all range people, especially who wants to exercise their memory.
 </li>
 
 <li><strong>Play Time:</strong>
-How long does your game take to play?
+It's easy to start by just look at the screen. For fresh player, it may only take a few second of 1 or 2 minutes before they lose, but for senior player, it can also take a long time to play because the longest sequence is set to 200.
+</li>
+
+<li><strong>Reference:</strong>
+<ol>
+	<li><a href="http://phaser.io/examples/v2/games/simon">Origin Game Simon </a></li>
+	<li><a href="http://examples.phaser.io/_site/view_full.html?d=audio&f=loop.js&t=loop">Music Loop </a></li>
+	<li><a href="https://segmentfault.com/a/1190000009282734">Phaser2 Game Tutorial in Chinese </a></li>
+	<li><a href="https://www.amazon.com/Iris-Sword-Art-Online-Alicization/dp/B07PYZ3RBF">Link to the Audio</a></li>
+</ul>
+
+</ol>
 </li>
 
 </ul>

@@ -4,14 +4,15 @@ var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'game', { preload: preload, 
 
 function preload() {
 
-    game.load.spritesheet('item', 'assets/buttons/number-buttons.png', 160, 160);
+    game.stage.backgroundColor = '#FFFFFF';
+    game.load.spritesheet('item', 'assets/number1.png', 160, 160);
 }
 
 var simon;
 var N = 1;
 var userCount = 0;
 var currentCount = 0;
-var sequenceCount = 16;
+var sequenceCount = 200;
 var sequenceList = [];
 var simonSez = false;
 var timeCheck;
@@ -19,6 +20,8 @@ var litSquare;
 var winner;
 var loser;
 var intro;
+var title;
+
 
 function create() {
 
@@ -112,8 +115,8 @@ function update() {
 
 function playerSequence(selected) {
 
-    correctSquare = sequenceList[userCount];
     userCount++;
+    correctSquare = sequenceList[N - userCount];
     thisSquare = simon.getIndex(selected);
 
     if (thisSquare == correctSquare)
@@ -158,8 +161,7 @@ function setUp() {
     {
         thisSquare = game.rnd.integerInRange(0,5);
         sequenceList.push(thisSquare);
-    }
-
+    }   
 }
 
 function select(item, pointer) {
@@ -195,25 +197,25 @@ function render() {
     {
         if (simonSez)
         {
-            game.debug.text('Simon Sez', 360, 96, 'rgb(255,0,0)');
+            game.debug.text('Memorize the order!', 310, 96, 'rgb(255,192,0)');
         }
         else
         {
-            game.debug.text('Your Turn', 360, 96, 'rgb(0,255,0)');
+            game.debug.text('Your Turn! Repeat in reverse order!', 235, 96, 'rgb(245,136,22)');
         }
     }
     else
     {
-        game.debug.text('Get Ready', 360, 96, 'rgb(0,0,255)');
+        game.debug.text('Loading', 365, 96, 'rgb(0,0,0)');
     }
 
     if (winner)
     {
-        game.debug.text('You Win!', 360, 32, 'rgb(0,0,255)');
+        game.debug.text('You Win!', 360, 32, 'rgb(255,0,0)');
     }
     else if (loser)
     {
-        game.debug.text('You Lose!', 360, 32, 'rgb(0,0,255)');
+        game.debug.text('You Lose!', 360, 32, 'rgb(255,0,0)');
     }
 
 }

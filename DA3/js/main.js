@@ -1,20 +1,18 @@
 var game = new Phaser.Game(400, 700, Phaser.AUTO, '#game');
 
 var states = {
-	preload: function() {
-    	this.preload = function() {
+    preload: function() {
+        this.preload = function() {
             game.stage.backgroundColor = '#000000';
             
             game.load.crossOrigin = 'anonymous'; 
             game.load.image('bg', 'assets/background.jpeg');
-            game.load.image('dude', 'assets/girl.png');
-            game.load.image('green', 'assets/Cats/1.png');
-            game.load.image('red', 'assets/Cats/2.png');
-            game.load.image('yellow', 'assets/Cats/3.png');
-            game.load.image('bomb', 'assets/Cats/bomb.png');
-            game.load.image('five', 'assets/Cats/4.png');
-            game.load.image('three', 'assets/Cats/4.png');
-            game.load.image('one', 'assets/Cats/4.png');
+            game.load.image('basket', 'assets/basket.jpeg');
+            game.load.image('cat1', 'assets/Cats/1.png');
+            game.load.image('cat2', 'assets/Cats/2.png');
+            game.load.image('cat3', 'assets/Cats/3.png');
+            game.load.image('dog', 'assets/Cats/bomb.png');
+            game.load.image('pick', 'assets/Cats/4.png');
             game.load.audio('bgMusic', 'assets/background.mp3');
 
             var progressText = game.add.text(game.world.centerX, game.world.centerY, '0%', {
@@ -27,19 +25,20 @@ var states = {
                 progressText.text = progress + '%';
             });
 
+            // 监听加载完毕事件
             game.load.onLoadComplete.add(onLoad);
-
+            // 最小展示时间，示例为3秒
             var deadLine = false;
             setTimeout(function() {
                 deadLine = true;
             }, 3000);
-
+            // 加载完毕回调方法
             function onLoad() {
                 if (deadLine) {
-
+                    // 已到达最小展示时间，可以进入下一个场景
                     game.state.start('created');
                 } else {
- 
+                    // 还没有到最小展示时间，1秒后重试
                     setTimeout(onLoad, 1000);
                 }
             }
@@ -47,7 +46,7 @@ var states = {
     },
 
     created: function() {
-    	this.create = function() {
+        this.create = function() {
 
             var bg = game.add.image(0, 0, 'bg');
             bg.width = game.world.width;
@@ -66,11 +65,11 @@ var states = {
             });
             remind.anchor.setTo(0.5, 0.5);
 
-            var man = game.add.sprite(game.world.centerX, game.world.height * 0.75, 'dude');
-            var manImage = game.cache.getImage('dude');
-            man.width = game.world.width * 0.2;
-            man.height = man.width / manImage.width * manImage.height;
-            man.anchor.setTo(0.5, 0.5);
+            var basket = game.add.sprite(game.world.centerX, game.world.height * 0.75, 'basket');
+            var basketImage = game.cache.getImage('basket');
+            basket.width = game.world.width * 0.2;
+            basket.height = basket.width / basketImage.width * basketImage.height;
+            basket.anchor.setTo(0.5, 0.5);
 
             game.input.onTap.add(function() {
                 game.state.start('play');
@@ -79,8 +78,8 @@ var states = {
     },
 
     play: function() {
-        var man; 
-        var apples;
+        var bas; 
+        var animals;
         var score = 0;
         var title; 
         var bgMusic;
@@ -100,13 +99,13 @@ var states = {
             bg.width = game.world.width;
             bg.height = game.world.height;
       
-            man = game.add.sprite(game.world.centerX, game.world.height * 0.75, 'dude');
-            var manImage = game.cache.getImage('dude');
-            man.width = game.world.width * 0.2;
-            man.height = man.width / manImage.width * manImage.height;
-            man.anchor.setTo(0.5, 0.5);
-            game.physics.enable(man); 
-            man.body.allowGravity = false;
+            basket = game.add.sprite(game.world.centerX, game.world.height * 0.75, 'basket');
+            var basketImage = game.cache.getImage('basket');
+            basket.width = game.world.width * 0.2;
+            basket.height = basket.width / basketImage.width * basketImage.height;
+            basket.anchor.setTo(0.5, 0.5);
+            game.physics.enable(basket); 
+            basket.body.allowGravity = false;
        
             title = game.add.text(game.world.centerX, game.world.height * 0.25, '0', {
                 fontSize: '40px',
@@ -119,7 +118,7 @@ var states = {
   
             game.input.onDown.add(function(pointer) {
           
-                if (Math.abs(pointer.x - man.x) < man.width / 2) touching = true;
+                if (Math.abs(pointer.x - basket.x) < basket.width / 2) touching = true;
             });
    
             game.input.onUp.add(function() {
@@ -127,60 +126,60 @@ var states = {
             });
 
             game.input.addMoveCallback(function(pointer, x, y, isTap) {
-                if (!isTap && touching) man.x = x;
+                if (!isTap && touching) basket.x = x;
             });
        
-            apples = game.add.group();
+            animals = game.add.group();
     
-            var appleTypes = ['green', 'red', 'yellow', 'bomb'];
-            var appleTimer = game.time.create(true);
-            appleTimer.loop(1000, function() {
+            var animalTypes = ['cat1', 'cat2', 'cat3', 'dog'];
+            var animalTimer = game.time.create(true);
+            animalTimer.loop(1000, function() {
                 var x = Math.random() * game.world.width;
-                var index = Math.floor(Math.random() * appleTypes.length)
-                var type = appleTypes[index];
-                var apple = apples.create(x, 0, type);
-                apple.type = type;
+                var index = Math.floor(Math.random() * animalTypes.length)
+                var type = animalTypes[index];
+                var animal = animals.create(x, 0, type);
+                animal.type = type;
     
-                game.physics.enable(apple);
+                game.physics.enable(animal);
 
-                var appleImg = game.cache.getImage(type);
-                apple.width = game.world.width / 8;
-                apple.height = apple.width / appleImg.width * appleImg.height;
+                var animalImg = game.cache.getImage(type);
+                animal.width = game.world.width / 8;
+                animal.height = animal.width / animalImg.width * animalImg.height;
       
-                apple.body.collideWorldBounds = true;
-                apple.body.onWorldBounds = new Phaser.Signal();
-                apple.body.onWorldBounds.add(function(apple, up, down, left, right) {
+                animal.body.collideWorldBounds = true;
+                animal.body.onWorldBounds = new Phaser.Signal();
+                animal.body.onWorldBounds.add(function(animal, up, down, left, right) {
                     if (down) {
-                        apple.kill();
-                        if (apple.type !== 'bomb') game.state.start('over', true, false, score);
+                        animal.kill();
+                        if (animal.type !== 'dog') game.state.start('over', true, false, score);
                     }
                 });
             });
-            appleTimer.start();
+            animalTimer.start();
         }
         this.update = function() {
        
-            game.physics.arcade.overlap(man, apples, pickApple, null, this);
+            game.physics.arcade.overlap(basket, animals, pickAnimal, null, this);
         }
   
-        function pickApple(man, apple) {
-            if (apple.type === 'bomb') {
+        function pickAnimal(basket, animal) {
+            if (animal.type === 'dog') {
       
                 game.state.start('over', true, false, score);
             } else {
                 var point = 1;
-                var img = 'one';
-                if (apple.type === 'red') {
+                var img = 'pick';
+                if (animal.type === 'cat2') {
                     point = 3;
-                    img = 'three';
-                } else if (apple.type === 'yellow') {
+                    img = 'pick';
+                } else if (animal.type === 'cat3') {
                     point = 5;
-                    img = 'five';
+                    img = 'pick';
                 }
          
-                var goal = game.add.image(apple.x, apple.y, img);
+                var goal = game.add.image(animal.x, animal.y, img);
                 var goalImg = game.cache.getImage(img);
-                goal.width = apple.width;
+                goal.width = animal.width;
                 goal.height = goal.width / (goalImg.width / goalImg.height);
                 goal.alpha = 0;
       
@@ -201,7 +200,7 @@ var states = {
                 score += point;
                 title.text = score;
 
-                apple.kill();
+                animal.kill();
 
             }
         }
@@ -224,7 +223,7 @@ var states = {
                 fill: '#f2bb15'
             });
             title.anchor.setTo(0.5, 0.5);
-            var scoreStr = 'Score:：'+score+'分';
+            var scoreStr = 'Score:：'+score;
             var scoreText = game.add.text(game.world.centerX, game.world.height * 0.4, scoreStr, {
                 fontSize: '30px',
                 fontWeight: 'bold',
@@ -247,7 +246,7 @@ var states = {
 
 
 Object.keys(states).map(function(key) {
-	game.state.add(key, states[key]);
+    game.state.add(key, states[key]);
 });
 
 

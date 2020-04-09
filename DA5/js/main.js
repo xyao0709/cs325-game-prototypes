@@ -25,7 +25,18 @@ var states = {
                 progressText.text = progress + '%';
             });
 
-            game.state.start('created');
+            game.load.onLoadComplete.add(onLoad);
+            var deadLine = false;
+            setTimeout(function() {
+                deadLine = true;
+            }, 2000);
+            function onLoad() {
+                if (deadLine) {
+                    game.state.start('created');
+                } else {
+                    setTimeout(onLoad, 1000);
+                }
+            }
         }
     },
 

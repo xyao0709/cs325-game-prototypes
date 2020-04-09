@@ -108,6 +108,30 @@ var states = {
 //                 fill: '#f2bb15'
 //             });
 //             title.anchor.setTo(0.5, 0.5);
+            
+            var ani1 = game.add.image(game.world.centerX / 6, game.world.height * 0.85, 'cat1');
+            title1 = game.add.text(game.world.centerX / 6, game.world.height * 0.95, '0', {
+                fontSize: '20px',
+                fontWeight: 'bold',
+                fill: '#f2bb15'
+            });
+            title1.anchor.setTo(0.5, 0.5);
+            
+            var ani2 = game.add.image(game.world.centerX / 2, game.world.height * 0.85, 'cat2');
+            title2 = game.add.text(game.world.centerX / 2, game.world.height * 0.95, '0', {
+                fontSize: '20px',
+                fontWeight: 'bold',
+                fill: '#f2bb15'
+            });
+            title2.anchor.setTo(0.5, 0.5);
+            
+            var ani3 = game.add.image(game.world.centerX * 5 / 6, game.world.height * 0.85, 'cat3');
+            title3 = game.add.text(game.world.centerX * 5 / 6, game.world.height * 0.95, '0', {
+                fontSize: '20px',
+                fontWeight: 'bold',
+                fill: '#f2bb15'
+            });
+            title3.anchor.setTo(0.5, 0.5);
  
             var touching = false;
   
@@ -164,13 +188,15 @@ var states = {
 //                 game.state.start('over', true, false, score);
                 game.state.start('over', true, false);
             } else {
-//                 var point = 1;
-                var img = 'pick';
+                if(animal.type === 'cat1'){
+                    var count1 = 1;
+                    var img = 'pick';
+                }
                 if (animal.type === 'cat2') {
-//                     point = 3;
+                    var count2 = 1;
                     img = 'pick';
                 } else if (animal.type === 'cat3') {
-//                     point = 5;
+                    point = 5;
                     img = 'pick';
                 }
          

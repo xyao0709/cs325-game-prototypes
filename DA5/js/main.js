@@ -50,13 +50,13 @@ var states = {
             var title = game.add.text(game.world.centerX, game.world.height * 0.25, 'Welcome~', {
                 fontSize: '40px',
                 fontWeight: 'bold',
-                fill: '#000000'
+                fill: '#f2bb15'
             });
             title.anchor.setTo(0.5, 0.5);
 
             var remind = game.add.text(game.world.centerX, game.world.height * 0.75, 'Click anywhere', {
                 fontSize: '20px',
-                fill: '#000000'
+                fill: '#f2bb15'
             });
             remind.anchor.setTo(0.5, 0.5);
 
@@ -102,12 +102,12 @@ var states = {
             game.physics.enable(basket); 
             basket.body.allowGravity = false;
        
-            title = game.add.text(game.world.centerX, game.world.height * 0.25, '0', {
-                fontSize: '40px',
-                fontWeight: 'bold',
-                fill: '#f2bb15'
-            });
-            title.anchor.setTo(0.5, 0.5);
+//             title = game.add.text(game.world.centerX, game.world.height * 0.25, '0', {
+//                 fontSize: '40px',
+//                 fontWeight: 'bold',
+//                 fill: '#f2bb15'
+//             });
+//             title.anchor.setTo(0.5, 0.5);
  
             var touching = false;
   

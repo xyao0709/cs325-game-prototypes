@@ -11,10 +11,6 @@ var states = {
             game.load.image('cat1', 'assets/Animals/Pets_Pokemon1.png');
             game.load.image('cat2', 'assets/Animals/Pets_Pokemon2.png');
             game.load.image('cat3', 'assets/Animals/Pets_Pokemon3.png');
-            game.load.image('house','assets/House_Big/Houses_Big_withHorse.png');
-            game.load.image('icon1', 'assets/House_icon/Houses_Icon1.png');
-            game.load.image('icon2', 'assets/House_icon/Houses_Icon2.png');
-            game.load.image('icon3', 'assets/House_icon/Houses_Icon3.png');
             game.load.image('dog', 'assets/Bomb.png');
             game.load.image('pick', 'assets/Moods/Pets_Moods1.png');
             game.load.audio('bgMusic', 'assets/background.mp3');
@@ -80,16 +76,10 @@ var states = {
         var bas; 
         var animals;
 //         var score = 0;
-        var count1 = 0;
-        var count2 = 0;
-        var count3 = 0;
-//         var title; 
+        var title; 
         var bgMusic;
         this.create = function() {
 //             score = 0;
-            count1 = 0;
-            count2 = 0;
-            count3 = 0;
     
             game.physics.startSystem(Phaser.Physics.Arcade);
             game.physics.arcade.gravity.y = 300;
@@ -120,7 +110,7 @@ var states = {
 //             title.anchor.setTo(0.5, 0.5);
             
             var ani1 = game.add.image(game.world.centerX / 6, game.world.height * 0.85, 'cat1');
-            var title1 = game.add.text(game.world.centerX / 6, game.world.height * 0.95, '0', {
+            title1 = game.add.text(game.world.centerX / 6, game.world.height * 0.95, '0', {
                 fontSize: '20px',
                 fontWeight: 'bold',
                 fill: '#f2bb15'
@@ -128,7 +118,7 @@ var states = {
             title1.anchor.setTo(0.5, 0.5);
             
             var ani2 = game.add.image(game.world.centerX / 2, game.world.height * 0.85, 'cat2');
-            var title2 = game.add.text(game.world.centerX / 2, game.world.height * 0.95, '0', {
+            title2 = game.add.text(game.world.centerX / 2, game.world.height * 0.95, '0', {
                 fontSize: '20px',
                 fontWeight: 'bold',
                 fill: '#f2bb15'
@@ -136,7 +126,7 @@ var states = {
             title2.anchor.setTo(0.5, 0.5);
             
             var ani3 = game.add.image(game.world.centerX * 5 / 6, game.world.height * 0.85, 'cat3');
-            var title3 = game.add.text(game.world.centerX * 5 / 6, game.world.height * 0.95, '0', {
+            title3 = game.add.text(game.world.centerX * 5 / 6, game.world.height * 0.95, '0', {
                 fontSize: '20px',
                 fontWeight: 'bold',
                 fill: '#f2bb15'
@@ -198,21 +188,15 @@ var states = {
 //                 game.state.start('over', true, false, score);
                 game.state.start('over', true, false);
             } else {
-//                 if(animal.type === 'cat1'){
-//                     var count11 = 1;
-//                     var count22 = 0;
-//                     var count33 = 0;
+                if(animal.type === 'cat1'){
+                    var count1 = 1;
                     var img = 'pick';
                 }
                 if (animal.type === 'cat2') {
-//                     count11 = 0;
-//                     count22 = 1;
-//                     count33 = 0;
+                    var count2 = 1;
                     img = 'pick';
                 } else if (animal.type === 'cat3') {
-//                     count11 = 0;
-//                     count22 = 0;
-//                     count33 = 1;
+                    point = 5;
                     img = 'pick';
                 }
          
@@ -238,12 +222,6 @@ var states = {
        
 //                 score += point;
 //                 title.text = score;
-//                 count1 += count11;
-//                 count2 += count22;
-//                 count3 += count33;
-//                 title1.text = count1;
-//                 title2.text = count2;
-//                 title3.text = count3;
 
                 animal.kill();
 
@@ -262,23 +240,12 @@ var states = {
             bg.width = game.world.width;
             bg.height = game.world.height;
     
-            var title = game.add.text(game.world.centerX / 3, game.world.height * 0.25, 'Your House', {
+            var title = game.add.text(game.world.centerX, game.world.height * 0.25, 'Game over', {
                 fontSize: '40px',
                 fontWeight: 'bold',
                 fill: '#f2bb15'
             });
             title.anchor.setTo(0.5, 0.5);
-            
-            var house = game.add.image(game.world.centerX / 2, game.world.height * 0.6, 'house');
-            var ani1 = game.add.image(game.world.centerX / 6, game.world.height * 0.85, 'cat1');
-            var ani2 = game.add.image(game.world.centerX / 2, game.world.height * 0.85, 'cat2');
-            var ani3 = game.add.image(game.world.centerX * 5 / 6, game.world.height * 0.85, 'cat3');
-            var man = game.add.image(game.world.width * 3 / 4, game.world.height * 0.85, 'basket');
-            var playButton1 = game.add.image( game.world.width * 3 / 4, game.world.height * 0.25, 'icon1');
-            var playButton2 = game.add.image( game.world.width * 3 / 4, game.world.height * 0.5, 'icon2');
-//             var playButton1 = game.add.button( game.world.width * 3 / 4, game.world.height * 0.25, null, 'icon1', 'icon3');
-//             var playButton2 = game.add.button( game.world.width * 3 / 4, game.world.height * 0.5, null, 'icon2', 'icon3');
-            
 //             var scoreStr = 'Score:：'+score;
 //             var scoreText = game.add.text(game.world.centerX, game.world.height * 0.4, scoreStr, {
 //                 fontSize: '30px',
@@ -286,13 +253,12 @@ var states = {
 //                 fill: '#f2bb15'
 //             });
 //             scoreText.anchor.setTo(0.5, 0.5);
-            
-//             var remind = game.add.text(game.world.centerX, game.world.height * 0.6, 'Click anywhere', {
-//                 fontSize: '20px',
-//                 fontWeight: 'bold',
-//                 fill: '#f2bb15'
-//             });
-//             remind.anchor.setTo(0.5, 0.5);
+            var remind = game.add.text(game.world.centerX, game.world.height * 0.6, 'Click anywhere', {
+                fontSize: '20px',
+                fontWeight: 'bold',
+                fill: '#f2bb15'
+            });
+            remind.anchor.setTo(0.5, 0.5);
          
             game.input.onTap.add(function() {
                 game.state.start('play');

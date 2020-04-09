@@ -6,8 +6,8 @@ var states = {
             game.stage.backgroundColor = '#000000';
             
             game.load.crossOrigin = 'anonymous'; 
-            game.load.image('bg', 'assets/Background_Forest.jpg');
-            game.load.image('basket', 'assets/People_Girl1.png');
+            game.load.image('bg', 'assets/Background/Background_Forest.jpg');
+            game.load.image('basket', 'assets/People/People_Girl1.png');
             game.load.image('cat1', 'assets/Animals/Pets_Pokemon1.png');
             game.load.image('cat2', 'assets/Animals/Pets_Pokemon2.png');
             game.load.image('cat3', 'assets/Animals/Pets_Pokemon3.png');

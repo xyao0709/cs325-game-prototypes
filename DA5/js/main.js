@@ -11,6 +11,10 @@ var states = {
             game.load.image('cat1', 'assets/Animals/Pets_Pokemon1.png');
             game.load.image('cat2', 'assets/Animals/Pets_Pokemon2.png');
             game.load.image('cat3', 'assets/Animals/Pets_Pokemon3.png');
+            game.load.image('house','assets/House_Big/Houses_Big_withHorse.png');
+            game.load.image('icon1', 'assets/House_icon/Houses_Icon1.png');
+            game.load.image('icon2', 'assets/House_icon/Houses_Icon2.png');
+            game.load.image('icon3', 'assets/House_icon/Houses_Icon3.png');
             game.load.image('dog', 'assets/Bomb.png');
             game.load.image('pick', 'assets/Moods/Pets_Moods1.png');
             game.load.audio('bgMusic', 'assets/background.mp3');
@@ -250,12 +254,21 @@ var states = {
             bg.width = game.world.width;
             bg.height = game.world.height;
     
-            var title = game.add.text(game.world.centerX, game.world.height * 0.25, 'Game over', {
+            var title = game.add.text(game.world.centerX / 3, game.world.height * 0.25, 'Your House', {
                 fontSize: '40px',
                 fontWeight: 'bold',
                 fill: '#f2bb15'
             });
             title.anchor.setTo(0.5, 0.5);
+            
+            var house = game.add.image(game.world.centerX / 2, game.world.height * 0.6, 'house');
+            var ani1 = game.add.image(game.world.centerX / 6, game.world.height * 0.85, 'cat1');
+            var ani2 = game.add.image(game.world.centerX / 2, game.world.height * 0.85, 'cat2');
+            var ani3 = game.add.image(game.world.centerX * 5 / 6, game.world.height * 0.85, 'cat3');
+            var man = game.add.image(game.world.width * 3 / 4, game.world.height * 0.85, 'basket');
+            var playButton1 = game.add.button( game.world.width * 3 / 4, game.world.height * 0.25, null, 'icon1', 'icon3');
+            var playButton2 = game.add.button( game.world.width * 3 / 4, game.world.height * 0.5, null, 'icon2', 'icon3');
+            
 //             var scoreStr = 'Score:：'+score;
 //             var scoreText = game.add.text(game.world.centerX, game.world.height * 0.4, scoreStr, {
 //                 fontSize: '30px',
@@ -263,12 +276,13 @@ var states = {
 //                 fill: '#f2bb15'
 //             });
 //             scoreText.anchor.setTo(0.5, 0.5);
-            var remind = game.add.text(game.world.centerX, game.world.height * 0.6, 'Click anywhere', {
-                fontSize: '20px',
-                fontWeight: 'bold',
-                fill: '#f2bb15'
-            });
-            remind.anchor.setTo(0.5, 0.5);
+            
+//             var remind = game.add.text(game.world.centerX, game.world.height * 0.6, 'Click anywhere', {
+//                 fontSize: '20px',
+//                 fontWeight: 'bold',
+//                 fill: '#f2bb15'
+//             });
+//             remind.anchor.setTo(0.5, 0.5);
          
             game.input.onTap.add(function() {
                 game.state.start('play');

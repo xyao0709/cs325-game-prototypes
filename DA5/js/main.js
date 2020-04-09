@@ -6,8 +6,8 @@ var states = {
             game.stage.backgroundColor = '#000000';
             
             game.load.crossOrigin = 'anonymous'; 
-            game.load.image('bg', 'assets/Background_Forest.jpg');
-            game.load.image('basket', 'assets/People_Girl1.png');
+            game.load.image('bg', 'assets/Background/Background_Forest.jpg');
+            game.load.image('basket', 'assets/People/People_Girl1.png');
             game.load.image('cat1', 'assets/Animals/Pets_Pokemon1.png');
             game.load.image('cat2', 'assets/Animals/Pets_Pokemon2.png');
             game.load.image('cat3', 'assets/Animals/Pets_Pokemon3.png');
@@ -25,7 +25,18 @@ var states = {
                 progressText.text = progress + '%';
             });
 
-            game.state.start('created');
+            game.load.onLoadComplete.add(onLoad);
+            var deadLine = false;
+            setTimeout(function() {
+                deadLine = true;
+            }, 2000);
+            function onLoad() {
+                if (deadLine) {
+                    game.state.start('created');
+                } else {
+                    setTimeout(onLoad, 1000);
+                }
+            }
         }
     },
 
@@ -36,16 +47,16 @@ var states = {
             bg.width = game.world.width;
             bg.height = game.world.height;
 
-            var title = game.add.text(game.world.centerX, game.world.height * 0.25, 'Welcome to your animal house~', {
+            var title = game.add.text(game.world.centerX, game.world.height * 0.25, 'Welcome~', {
                 fontSize: '40px',
                 fontWeight: 'bold',
-                fill: '#000000'
+                fill: '#f2bb15'
             });
             title.anchor.setTo(0.5, 0.5);
 
             var remind = game.add.text(game.world.centerX, game.world.height * 0.75, 'Click anywhere', {
                 fontSize: '20px',
-                fill: '#000000'
+                fill: '#f2bb15'
             });
             remind.anchor.setTo(0.5, 0.5);
 
@@ -64,11 +75,11 @@ var states = {
     play: function() {
         var bas; 
         var animals;
-        var score = 0;
+//         var score = 0;
         var title; 
         var bgMusic;
         this.create = function() {
-            score = 0;
+//             score = 0;
     
             game.physics.startSystem(Phaser.Physics.Arcade);
             game.physics.arcade.gravity.y = 300;
@@ -91,12 +102,36 @@ var states = {
             game.physics.enable(basket); 
             basket.body.allowGravity = false;
        
-            title = game.add.text(game.world.centerX, game.world.height * 0.25, '0', {
-                fontSize: '40px',
+//             title = game.add.text(game.world.centerX, game.world.height * 0.25, '0', {
+//                 fontSize: '40px',
+//                 fontWeight: 'bold',
+//                 fill: '#f2bb15'
+//             });
+//             title.anchor.setTo(0.5, 0.5);
+            
+            var ani1 = game.add.image(game.world.centerX / 6, game.world.height * 0.85, 'cat1');
+            title1 = game.add.text(game.world.centerX / 6, game.world.height * 0.95, '0', {
+                fontSize: '20px',
                 fontWeight: 'bold',
                 fill: '#f2bb15'
             });
-            title.anchor.setTo(0.5, 0.5);
+            title1.anchor.setTo(0.5, 0.5);
+            
+            var ani2 = game.add.image(game.world.centerX / 2, game.world.height * 0.85, 'cat2');
+            title2 = game.add.text(game.world.centerX / 2, game.world.height * 0.95, '0', {
+                fontSize: '20px',
+                fontWeight: 'bold',
+                fill: '#f2bb15'
+            });
+            title2.anchor.setTo(0.5, 0.5);
+            
+            var ani3 = game.add.image(game.world.centerX * 5 / 6, game.world.height * 0.85, 'cat3');
+            title3 = game.add.text(game.world.centerX * 5 / 6, game.world.height * 0.95, '0', {
+                fontSize: '20px',
+                fontWeight: 'bold',
+                fill: '#f2bb15'
+            });
+            title3.anchor.setTo(0.5, 0.5);
  
             var touching = false;
   
@@ -135,7 +170,8 @@ var states = {
                 animal.body.onWorldBounds.add(function(animal, up, down, left, right) {
                     if (down) {
                         animal.kill();
-                        if (animal.type !== 'dog') game.state.start('over', true, false, score);
+//                         if (animal.type !== 'dog') game.state.start('over', true, false, score);
+                        if (animal.type !== 'dog') game.state.start('over', true, false);
                     }
                 });
             });
@@ -149,12 +185,15 @@ var states = {
         function pickAnimal(basket, animal) {
             if (animal.type === 'dog') {
       
-                game.state.start('over', true, false, score);
+//                 game.state.start('over', true, false, score);
+                game.state.start('over', true, false);
             } else {
-                var point = 1;
-                var img = 'pick';
+                if(animal.type === 'cat1'){
+                    var count1 = 1;
+                    var img = 'pick';
+                }
                 if (animal.type === 'cat2') {
-                    point = 3;
+                    var count2 = 1;
                     img = 'pick';
                 } else if (animal.type === 'cat3') {
                     point = 5;
@@ -181,8 +220,8 @@ var states = {
                     });
                 });
        
-                score += point;
-                title.text = score;
+//                 score += point;
+//                 title.text = score;
 
                 animal.kill();
 
@@ -191,10 +230,10 @@ var states = {
     },
 
     over: function() {
-        var score = 0;
-        this.init = function() {
-            score = arguments[0];
-        }
+//         var score = 0;
+//         this.init = function() {
+//             score = arguments[0];
+//         }
         this.create = function() {
    
             var bg = game.add.image(0, 0, 'bg');
@@ -207,13 +246,13 @@ var states = {
                 fill: '#f2bb15'
             });
             title.anchor.setTo(0.5, 0.5);
-            var scoreStr = 'Score:：'+score;
-            var scoreText = game.add.text(game.world.centerX, game.world.height * 0.4, scoreStr, {
-                fontSize: '30px',
-                fontWeight: 'bold',
-                fill: '#f2bb15'
-            });
-            scoreText.anchor.setTo(0.5, 0.5);
+//             var scoreStr = 'Score:：'+score;
+//             var scoreText = game.add.text(game.world.centerX, game.world.height * 0.4, scoreStr, {
+//                 fontSize: '30px',
+//                 fontWeight: 'bold',
+//                 fill: '#f2bb15'
+//             });
+//             scoreText.anchor.setTo(0.5, 0.5);
             var remind = game.add.text(game.world.centerX, game.world.height * 0.6, 'Click anywhere', {
                 fontSize: '20px',
                 fontWeight: 'bold',

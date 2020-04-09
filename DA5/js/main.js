@@ -76,10 +76,16 @@ var states = {
         var bas; 
         var animals;
 //         var score = 0;
-        var title; 
+        var count1 = 0;
+        var count2 = 0;
+        var count3 = 0;
+//         var title; 
         var bgMusic;
         this.create = function() {
 //             score = 0;
+            count1 = 0;
+            count2 = 0;
+            count3 = 0;
     
             game.physics.startSystem(Phaser.Physics.Arcade);
             game.physics.arcade.gravity.y = 300;
@@ -110,7 +116,7 @@ var states = {
 //             title.anchor.setTo(0.5, 0.5);
             
             var ani1 = game.add.image(game.world.centerX / 6, game.world.height * 0.85, 'cat1');
-            title1 = game.add.text(game.world.centerX / 6, game.world.height * 0.95, '0', {
+            var title1 = game.add.text(game.world.centerX / 6, game.world.height * 0.95, '0', {
                 fontSize: '20px',
                 fontWeight: 'bold',
                 fill: '#f2bb15'
@@ -118,7 +124,7 @@ var states = {
             title1.anchor.setTo(0.5, 0.5);
             
             var ani2 = game.add.image(game.world.centerX / 2, game.world.height * 0.85, 'cat2');
-            title2 = game.add.text(game.world.centerX / 2, game.world.height * 0.95, '0', {
+            var title2 = game.add.text(game.world.centerX / 2, game.world.height * 0.95, '0', {
                 fontSize: '20px',
                 fontWeight: 'bold',
                 fill: '#f2bb15'
@@ -126,7 +132,7 @@ var states = {
             title2.anchor.setTo(0.5, 0.5);
             
             var ani3 = game.add.image(game.world.centerX * 5 / 6, game.world.height * 0.85, 'cat3');
-            title3 = game.add.text(game.world.centerX * 5 / 6, game.world.height * 0.95, '0', {
+            var title3 = game.add.text(game.world.centerX * 5 / 6, game.world.height * 0.95, '0', {
                 fontSize: '20px',
                 fontWeight: 'bold',
                 fill: '#f2bb15'
@@ -189,14 +195,14 @@ var states = {
                 game.state.start('over', true, false);
             } else {
                 if(animal.type === 'cat1'){
-                    var count1 = 1;
+                    count1 += 1;
                     var img = 'pick';
                 }
                 if (animal.type === 'cat2') {
-                    var count2 = 1;
+                    count2 += 1;
                     img = 'pick';
                 } else if (animal.type === 'cat3') {
-                    point = 5;
+                    count3 += 1;
                     img = 'pick';
                 }
          
@@ -222,6 +228,10 @@ var states = {
        
 //                 score += point;
 //                 title.text = score;
+                
+                title1.text = count1;
+                title2.text = count2;
+                title3.text = count3;
 
                 animal.kill();
 

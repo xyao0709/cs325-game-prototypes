@@ -198,21 +198,21 @@ var states = {
 //                 game.state.start('over', true, false, score);
                 game.state.start('over', true, false);
             } else {
-                if(animal.type === 'cat1'){
-                    var count11 = 1;
-                    var count22 = 0;
-                    var count33 = 0;
+//                 if(animal.type === 'cat1'){
+//                     var count11 = 1;
+//                     var count22 = 0;
+//                     var count33 = 0;
                     var img = 'pick';
                 }
                 if (animal.type === 'cat2') {
-                    count11 = 0;
-                    count22 = 1;
-                    count33 = 0;
+//                     count11 = 0;
+//                     count22 = 1;
+//                     count33 = 0;
                     img = 'pick';
                 } else if (animal.type === 'cat3') {
-                    count11 = 0;
-                    count22 = 0;
-                    count33 = 1;
+//                     count11 = 0;
+//                     count22 = 0;
+//                     count33 = 1;
                     img = 'pick';
                 }
          
@@ -238,12 +238,12 @@ var states = {
        
 //                 score += point;
 //                 title.text = score;
-                count1 += count11;
-                count2 += count22;
-                count3 += count33;
-                title1.text = count1;
-                title2.text = count2;
-                title3.text = count3;
+//                 count1 += count11;
+//                 count2 += count22;
+//                 count3 += count33;
+//                 title1.text = count1;
+//                 title2.text = count2;
+//                 title3.text = count3;
 
                 animal.kill();
 
@@ -274,8 +274,10 @@ var states = {
             var ani2 = game.add.image(game.world.centerX / 2, game.world.height * 0.85, 'cat2');
             var ani3 = game.add.image(game.world.centerX * 5 / 6, game.world.height * 0.85, 'cat3');
             var man = game.add.image(game.world.width * 3 / 4, game.world.height * 0.85, 'basket');
-            var playButton1 = game.add.button( game.world.width * 3 / 4, game.world.height * 0.25, null, 'icon1', 'icon3');
-            var playButton2 = game.add.button( game.world.width * 3 / 4, game.world.height * 0.5, null, 'icon2', 'icon3');
+            var playButton1 = game.add.image( game.world.width * 3 / 4, game.world.height * 0.25, 'icon1');
+            var playButton2 = game.add.image( game.world.width * 3 / 4, game.world.height * 0.5, 'icon2');
+//             var playButton1 = game.add.button( game.world.width * 3 / 4, game.world.height * 0.25, null, 'icon1', 'icon3');
+//             var playButton2 = game.add.button( game.world.width * 3 / 4, game.world.height * 0.5, null, 'icon2', 'icon3');
             
 //             var scoreStr = 'Score:：'+score;
 //             var scoreText = game.add.text(game.world.centerX, game.world.height * 0.4, scoreStr, {

@@ -199,14 +199,20 @@ var states = {
                 game.state.start('over', true, false);
             } else {
                 if(animal.type === 'cat1'){
-                    count1 += 1;
+                    var count11 = 1;
+                    var count22 = 0;
+                    var count33 = 0;
                     var img = 'pick';
                 }
                 if (animal.type === 'cat2') {
-                    count2 += 1;
+                    count11 = 0;
+                    count22 = 1;
+                    count33 = 0;
                     img = 'pick';
                 } else if (animal.type === 'cat3') {
-                    count3 += 1;
+                    count11 = 0;
+                    count22 = 0;
+                    count33 = 1;
                     img = 'pick';
                 }
          
@@ -232,7 +238,9 @@ var states = {
        
 //                 score += point;
 //                 title.text = score;
-                
+                count1 += count11;
+                count2 += count22;
+                count3 += count33;
                 title1.text = count1;
                 title2.text = count2;
                 title3.text = count3;

@@ -24,6 +24,8 @@ var states = {
             game.load.onFileComplete.add(function(progress) {
                 progressText.text = progress + '%';
             });
+
+            game.state.start('created');
         }
     },
 

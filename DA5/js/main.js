@@ -36,7 +36,7 @@ var states = {
             bg.width = game.world.width;
             bg.height = game.world.height;
 
-            var title = game.add.text(game.world.centerX, game.world.height * 0.25, 'Welcome to your animal house~', {
+            var title = game.add.text(game.world.centerX, game.world.height * 0.25, 'Welcome~', {
                 fontSize: '40px',
                 fontWeight: 'bold',
                 fill: '#000000'
